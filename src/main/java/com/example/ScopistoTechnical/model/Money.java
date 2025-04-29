@@ -8,7 +8,7 @@ import java.util.Objects;
 
 @Getter
 @Embeddable
-public class Money {
+public class Money implements Comparable<Money> {
 
     private BigDecimal amount;
 
@@ -39,5 +39,10 @@ public class Money {
     @Override
     public int hashCode() {
         return Objects.hash(amount.stripTrailingZeros());
+    }
+
+    @Override
+    public int compareTo(Money o) {
+        return Integer.compare(this.amount.compareTo(o.amount), 0);
     }
 }

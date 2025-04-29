@@ -48,15 +48,8 @@ public class PetServiceImpl implements PetService {
 
     @Override
     @Transactional
-    public Optional<Pet> save(PetDTO petDTO) throws Exception {
+    public Optional<Pet> save(Pet pet) throws Exception {
         try{
-            Pet pet = new Pet(
-                    null,
-                    petDTO.name,
-                    petDTO.description,
-                    petDTO.birthDate,
-                    petDTO.price
-            );
             return Optional.of(petRepository.save(pet));
         } catch (Exception e){
             throw new Exception(e.getMessage());

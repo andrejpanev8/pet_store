@@ -5,7 +5,6 @@ import com.example.ScopistoTechnical.model.Money;
 import com.example.ScopistoTechnical.model.Pet;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -20,13 +19,19 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class Cat extends Pet {
 
-    public Cat(AppUser owner, String name, String description, LocalDate birthDate, Double money) {
-        super(owner, name, description, birthDate, money); // Still calling the parent constructor
+    public Cat(AppUser owner, String name, String description, LocalDate birthDate, BigDecimal money) {
+        super(owner, name, description, birthDate, money);
     }
 
     @Override
     public void setPrice(Money price){
         Money catPrice = new Money(BigDecimal.valueOf(super.getAge()));
         super.setPrice(catPrice);
+    }
+
+    @Override
+    public String makeSound(){
+        return super.getOwner() != null ?
+                "Meow, cat " + super.getName() + " has owner " + super.getOwner().getFirstName() : "";
     }
 }

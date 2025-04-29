@@ -20,15 +20,8 @@ import java.time.LocalDate;
 public class Dog extends Pet {
     private int rating;
 
-    public Dog(AppUser owner, String name, String description, LocalDate birthDate, Double money, int rating) {
-        super(owner, name, description, birthDate, money);  // Calling parent constructor
-        this.rating = rating;
-    }
-
-    public void setRating(int rating) {
-        if (rating < 0 || rating > 10) {
-            throw new IllegalArgumentException("Rating must be between 0 and 10.");
-        }
+    public Dog(AppUser owner, String name, String description, LocalDate birthDate, BigDecimal money, int rating) {
+        super(owner, name, description, birthDate, money);
         this.rating = rating;
     }
 
@@ -36,6 +29,12 @@ public class Dog extends Pet {
     public void setPrice(Money money){
         Money dogPrice = new Money(BigDecimal.valueOf(super.getAge()+this.rating));
         super.setPrice(dogPrice);
+    }
+
+    @Override
+    public String makeSound(){
+        return super.getOwner() != null ?
+                "Woof, dog " + super.getName() + " has owner " + super.getOwner().getFirstName() : "";
     }
 }
 

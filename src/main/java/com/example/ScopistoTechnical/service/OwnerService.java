@@ -10,5 +10,6 @@ public interface OwnerService {
     Optional<AppUser> getOwner(Long id) throws Exception;
     List<AppUser> getAllOwners() throws Exception;
     List<AppUser> saveAll(List<AppUser> owners) throws Exception;
-    Optional<AppUser> save(AppUserDTO appUserDTO) throws Exception;
+    Optional<AppUser> save(AppUser appUser) throws Exception;
+    List<AppUser> buyPets() throws Exception;
 }
